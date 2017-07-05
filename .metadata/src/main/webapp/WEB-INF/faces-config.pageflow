@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14985120057970" configfile="/labormed-web/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="370" id="pf14985120469431" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14985120469432 pf14985120469433" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="338" y="178" id="pf14985120469444" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14985120469432" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/index.xhtml" x="338" y="562" id="pf14985120469445" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14985120469433" path="/pages/index.xhtml"/>
+  <links id="pf14985120469432" target="pf14985120469444" source="pf14985120469431" outcome="logout"/>
+  <links id="pf14985120469433" target="pf14985120469445" source="pf14985120469431" outcome="login"/>
+</pageflow:Pageflow>

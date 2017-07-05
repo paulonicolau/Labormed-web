@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/layout/template.xhtml">
+
+	<ui:define name="body">
+		<h:messages  />
+		<div id="stackTrace">Exception during request processing: 
+		<ui:repeat value="#{org.jboss.seam.debug.contexts.exceptionCauses}"	var="exception">
+			<div>Caused by #{exception.class.name} with message: "#{exception.getMessage()}" 
+			<pre>
+				<ui:repeat value="#{exception.stackTrace}" var="stackElement">
+					#{stackElement}
+				</ui:repeat>
+			</pre>
+			</div>
+		</ui:repeat>
+	</div>
+	</ui:define>
+</ui:composition>

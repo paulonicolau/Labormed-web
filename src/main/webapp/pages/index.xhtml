@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/layout/template.xhtml">
+
+<ui:define name="body">
+	<style>
+		.container {
+			width: 200px;
+			height: 150px;
+			border: 1px solid #8FBC8F;
+			background: #ffe;
+			position: relative;
+			display: table;
+			float: left;
+			text-align: center;
+			margin: 2px;
+		}
+		
+		.container p {
+			*position: absolute;
+			top: 50%;
+			display: table-cell;
+			vertical-align: middle;
+		}
+		
+		.container span {
+			display: block;
+			*position: relative;
+			top: -50%;
+		}
+		
+		.container:hover {
+			background-color: #8FBC8F;
+			cursor: pointer;
+		}
+</style>
+	<div align="left" id="mapa" style="margin: 10px; font-size: 20px">
+		O que você deseja?
+	</div>
+	<div id="body" align="center" style="padding: 150px; width: 825px">
+		<h:form>
+		<div class="container"><p><h:commandLink action="/pages/produtos.xhtml" value="Requisitar Materiais"/></p></div>
+		<div class="container"><p><h:commandLink action="/pages/index.xhtml" value="Visualizar Requisições"/></p></div>
+		<div class="container"><p><h:commandLink action="/pages/index.xhtml" value="Gerenciar Materiais"/></p></div>
+		<div class="container"><p><h:commandLink action="/pages/index.xhtml" value="Gerenciar Postos"/></p></div>
+		<div class="container"><p><h:commandLink action="/pages/index.xhtml" value="Relatório de rastreabilidade de produtos"/></p></div>
+		<div class="container"><p><h:commandLink action="/pages/index.xhtml" value="Relatório de estoque"/></p></div>
+		<div class="container"><p><h:commandLink action="/pages/index.xhtml" value="Relatório de controle gerencial"/></p></div>
+		<div class="container"><p><h:commandLink action="/pages/usuarios.xhtml" value="Gerenciar usuários"/></p></div>
+		</h:form>
+	</div>
+</ui:define>
+
+</ui:composition>

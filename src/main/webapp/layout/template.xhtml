@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui" >
+
+<h:head>
+	<title>#{msg['tituloSistema']}</title>
+	<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.request.contextPath}/styles/style.css" /> 
+	<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.request.contextPath}/styles/menu.css" />
+	<script type="text/javascript" language="JavaScript" src="#{facesContext.externalContext.request.contextPath}/script/scripts.js"></script>
+	<style>
+		.ui-widget-header {
+    		/*background: url("#{facesContext.externalContext.request.contextPath}/images/menu/background_header.gif") repeat scroll 0 0 transparent;*/
+    	}
+    	.imgLogo{
+    		position: relative;
+    		height: 50px;
+    	}
+	</style>
+</h:head>
+<h:body>
+	<p:layout fullPage="true" style="margin: 0;">
+		<p:layoutUnit id="top" position="north" size="100" resizable="false" closable="false" collapsible="true" scrollable="false" style="background:#FFFFFF">
+			<p:panel id="divLogoHead">
+				<h:graphicImage value="/images/logo.png" styleClass="imgLogo"/>
+			</p:panel>
+	
+			<ui:insert name="menu" >
+				<ui:include src="/pages/menu.xhtml" />
+			</ui:insert>
+		</p:layoutUnit>
+
+		<p:layoutUnit id="center" position="center" scrollable="true" zindex="6">
+			<ui:insert name="body" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" height="40">
+			<h:outputLabel value="#{msg['rodape1']}" />
+			<br />
+			<h:outputLabel value="#{msg['rodape2']}" />
+		</p:layoutUnit>
+	</p:layout>
+
+	<p:dialog modal="true" widgetVar="statusDialog" draggable="false" closable="false" showHeader="false" resizable="false">  
+	    <p:graphicImage value="/images/ajaxloadingbar.gif" />  
+	</p:dialog>
+
+</h:body>
+</html>

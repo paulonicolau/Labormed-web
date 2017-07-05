@@ -1,0 +1,129 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:c="http://java.sun.com/jsp/jstl/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/layout/templateRelatorio.xhtml">
+
+<ui:define name="left">
+<h:form prependId="false">
+	<h:panelGrid columns="1">
+		<p:outputLabel value="FILTRAR MATERIAIS" />
+
+		<p:outputLabel value="Descrição do Produto" style="margin-top: 30px"/>
+		<p:selectOneMenu id="produtos" value="#{produtoBean.produto}" style="width: 200px;" effect="fade">
+			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
+			<f:selectItems value="#{produtoBean.produtos}" var="c" itemLabel="#{c.descricao}" itemValue="#{c}"/>
+		</p:selectOneMenu>
+
+		<p:outputLabel value="Código do Produto" style="margin-top: 20px"/>
+		<p:inputText id="codProduto" style="width: 217px"/>
+
+		<p:outputLabel value="Grupo" style="margin-top: 20px"/>
+		<p:selectOneMenu id="gruposID" value="#{grupoBean.grupo}" style="width: 200px;" effect="fade" converter="conversorGrupo"> 
+<!-- 			filter="true" filterMatchMode="startsWith" var="c"> -->
+			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
+			<f:selectItems value="#{grupoBean.grupos}" var="c" itemLabel="#{c.descricao}" itemValue="#{c}"/>
+			<p:ajax update="subGruposID" listener="#{grupoBean.onChangeGrupo}" />
+		</p:selectOneMenu>
+		
+		<p:outputLabel value="Subgrupo" style="margin-top: 20px"/>
+		<p:selectOneMenu id="subGruposID" value="#{produtoBean.subGrupo}" style="width: 200px;" effect="fade" converter="conversorSubGrupo">
+			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
+			<f:selectItems value="#{grupoBean.subGrupos}" var="c" itemLabel="#{c.descricao}" itemValue="#{c}"/>
+			<p:ajax update="produtoID" listener="#{produtoBean.onChangeSubGrupo}" />
+		</p:selectOneMenu>
+
+		<p:outputLabel value="" />
+		<p:commandButton value="enviar" update=":produtoID" actionListener="#{produtoBean.buscarProdutos}" />
+		
+
+		<p:outputLabel value="Data de Cadastro" style="margin-top: 20px"/>
+		<p:inputText id="dataCadastro" style="width: 217px"/>
+
+		<p:outputLabel value="Validade" style="margin-top: 20px"/>
+		<p:inputText id="validade" style="width: 217px"/>
+
+		<p:outputLabel value="Lote" style="margin-top: 20px"/>
+		<p:inputText id="lote" style="width: 217px"/>
+
+		<p:outputLabel value="Situação" style="margin-top: 20px"/>
+		<p:selectOneMenu id="situacao" value="#{produtoBean.produto}" style="width: 200px;" effect="fade">
+			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
+			<f:selectItem itemLabel="Ativo"  itemValue="" noSelectionOption="false"/>
+			<f:selectItem itemLabel="Inativo"  itemValue="" noSelectionOption="false"/>
+		</p:selectOneMenu>
+
+		<p:outputLabel value="Registro na Anvisa" style="margin-top: 20px"/>
+		<p:inputText id="registroAnvisa" value="#{produtoBean.produto.registroAnvisa}" style="width: 217px"/>
+
+		<p:outputLabel value="Fabricante" style="margin-top: 20px"/>
+		<p:inputText id="fabricante" style="width: 217px"/>
+	</h:panelGrid>
+</h:form>
+</ui:define>
+
+<ui:define name="body">
+<h:form prependId="false">
+	<div align="center">
+	<p:dataGrid var="produto" id="produtoID" value="#{produtoBean.produtos}" paginator="true" rows="3" columns="1" style="width: 600px; text-align:center">
+			<p:panelGrid style="margin-top: 20px">
+			    <f:facet name="header">
+			        <p:row>
+			            <p:column colspan="4">${produto.descricao}</p:column>
+			        </p:row>
+			    </f:facet>
+
+		        <p:row>
+		            <p:column styleClass="ui-widget-header">Código do Produto</p:column>
+		            <p:column styleClass="ui-widget-header">Grupo</p:column>
+		            <p:column styleClass="ui-widget-header">Subgrupo</p:column>
+		            <p:column styleClass="ui-widget-header">Data de Cadastro</p:column>
+		        </p:row>
+
+			    <p:row>
+			    	<p:column>${produto.codigo}</p:column>
+			        <p:column>${produto.subGrupo.grupo.descricao}</p:column>
+			        <p:column>${produto.subGrupo.descricao}</p:column>
+			        <p:column>
+						<h:outputText value="#{produto.dataReg}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+			    </p:row>
+
+		        <p:row>
+		            <p:column styleClass="ui-widget-header">Validade</p:column>
+		            <p:column styleClass="ui-widget-header">Lote</p:column>
+		            <p:column styleClass="ui-widget-header">Situação</p:column>
+		            <p:column styleClass="ui-widget-header">Unidade de Medida</p:column>
+		        </p:row>
+
+			    <p:row>
+			    	<p:column>12/12/1200</p:column>
+			        <p:column>123456</p:column>
+			        <p:column>${produto.ativo}</p:column>
+			        <p:column>Unidade</p:column>
+			    </p:row>
+
+		        <p:row>
+		            <p:column styleClass="ui-widget-header">Quantidade disponível</p:column>
+		            <p:column styleClass="ui-widget-header">Código de Barras</p:column>
+		            <p:column styleClass="ui-widget-header">Registro na Anvisa</p:column>
+		            <p:column styleClass="ui-widget-header">Fabricante</p:column>
+		        </p:row>
+
+			    <p:row>
+			    	<p:column>500</p:column>
+			        <p:column>${produto.codigoBarras}</p:column>
+			        <p:column>${produto.registroAnvisa}</p:column>
+			        <p:column>${produto.fabricante.razaoSocial}</p:column>
+			    </p:row>
+			</p:panelGrid>
+	</p:dataGrid>
+	</div>
+	</h:form>
+</ui:define>
+</ui:composition>
