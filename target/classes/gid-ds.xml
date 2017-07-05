@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+	<local-tx-datasource>
+		<jndi-name>gidDS</jndi-name>
+		<connection-url>jdbc:sqlserver://localhost:1433;databaseName=GP</connection-url>
+		<driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+		<user-name>sa</user-name>
+		<password>sa@12345678</password>
+
+		<min-pool-size>5</min-pool-size>
+		<max-pool-size>20</max-pool-size>
+		<idle-timeout-minutes>10</idle-timeout-minutes>
+	</local-tx-datasource>
+</datasources>

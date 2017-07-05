@@ -5,11 +5,8 @@
 	<artifactId>labormed-web</artifactId>
 	<packaging>war</packaging>
 	<name>Labormed - WEB - JSF Module</name>
-	<parent>
-		<groupId>br.com.labormed</groupId>
-		<artifactId>labormed-root</artifactId>
-		<version>1.0</version>
-	</parent>
+	<version>1.0</version>
+
 	<dependencies>
 		<dependency>
 		    <groupId>org.hibernate</groupId>
@@ -26,7 +23,6 @@
 		    <artifactId>hibernate-jpa-2.1-api</artifactId>
 		    <version>1.0.0.Final</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/sqljdbc4 -->
 		<dependency>
 		    <groupId>com.microsoft.sqlserver</groupId>
 		    <artifactId>sqljdbc4</artifactId>
@@ -68,7 +64,7 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>${primefaces.version}</version>
+			<version>6.1</version>
 		</dependency>
 
 		<dependency>
