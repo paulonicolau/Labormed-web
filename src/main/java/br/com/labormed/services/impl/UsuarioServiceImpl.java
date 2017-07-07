@@ -1,4 +1,4 @@
-package br.com.labormed.impl;
+package br.com.labormed.services.impl;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;

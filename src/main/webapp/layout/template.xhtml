@@ -10,23 +10,20 @@
 <h:head>
 	<title>#{msg['tituloSistema']}</title>
 	<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.request.contextPath}/styles/style.css" /> 
-	<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.request.contextPath}/styles/menu.css" />
 	<script type="text/javascript" language="JavaScript" src="#{facesContext.externalContext.request.contextPath}/script/scripts.js"></script>
 	<style>
 		.ui-widget-header {
     		/*background: url("#{facesContext.externalContext.request.contextPath}/images/menu/background_header.gif") repeat scroll 0 0 transparent;*/
     	}
-    	.imgLogo{
-    		position: relative;
-    		height: 50px;
-    	}
 	</style>
 </h:head>
 <h:body>
 	<p:layout fullPage="true" style="margin: 0;">
-		<p:layoutUnit id="top" position="north" size="100" resizable="false" closable="false" collapsible="true" scrollable="false" style="background:#FFFFFF">
+		<p:layoutUnit id="top" position="north" resizable="false" closable="false" collapsible="true" scrollable="false" style="background:#FFFFFF;" rendered="#{loginBean.usuarioLogado != null}">
 			<p:panel id="divLogoHead">
-				<h:graphicImage value="/images/logo.png" styleClass="imgLogo"/>
+				<a href="#{facesContext.externalContext.request.contextPath}" title="#{msg['tituloSistema']}">
+					<img src="#{facesContext.externalContext.request.contextPath}/images/menu/logoLabormed.jpg" class="imgLogo" alt="#{msg['rodape1']}"/>
+				</a>
 			</p:panel>
 	
 			<ui:insert name="menu" >
@@ -38,10 +35,10 @@
 			<ui:insert name="body" />
 		</p:layoutUnit>
 
-		<p:layoutUnit position="south" height="40">
-			<h:outputLabel value="#{msg['rodape1']}" />
-			<br />
-			<h:outputLabel value="#{msg['rodape2']}" />
+		<p:layoutUnit position="south" rendered="#{loginBean.usuarioLogado != null}" style="background:#466c6c;">
+			<div id="sysFooter">
+				<h:outputLabel value="#{msg['rodape1']}" /> <h:outputLabel value="#{msg['rodape2']}" />
+			</div>
 		</p:layoutUnit>
 	</p:layout>
 

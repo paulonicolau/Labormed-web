@@ -1,12 +1,10 @@
 @CHARSET "ISO-8859-1";
-html, body {height: 100%;}
+html, body {height:100%; margin:0; padding:0;}
 head {background-color: #FFFFFF;}
 body {background-color: #FFFFFF; font-size: 12px; }
-#divLogoHead {
-	width: 100%;
-	background: #408080;
-	height: 50px;
-}
+.ui-layout-unit{padding:0;}
+.ui-layout-unit .ui-layout-unit-content{padding:0;}
+
 #titulo {
 	font-family: arial-black;
 	font-size: 30px;
@@ -50,8 +48,10 @@ body {background-color: #FFFFFF; font-size: 12px; }
 	border: 1px solid grey;
 }
 .ui-widget-header {
-	background: #e6e6e3;
+	background: #466c6c;
 	border: 0;	
+	color:#FFFFFF;
+	border-radius:0;
 }
 .ui-datepicker-today {
 	background: red;
@@ -65,3 +65,99 @@ body {background-color: #FFFFFF; font-size: 12px; }
 .ui-datepicker{
 	width: 18em;
 }
+.ui-widget-overlay{
+	background: #2b2922;
+	opacity: .60;
+	filter: Alpha(Opacity=60);
+}
+.ui-widget-content{
+	background:#ffffff;
+}	
+.ui-dialog-content.ui-widget-content{
+	background:#f0f0f0;
+}
+.ui-icon-closethick{
+	background-image:url("../javax.faces.resource/images/ui-icons_ffffff_256x240.png.jsf?ln=primefaces-south-street") !important;
+}
+.ui-dialog.ui-widget{border:1px solid #AAAAAA;}
+
+.ui-dialog-content.ui-widget-content ul{
+	margin:0;
+	padding:20px;
+}
+
+/* Estilos do login */
+#loginDivMain{height:100%; background:#f4f4f4; position:relative; min-height:600px;}
+#loginBGVerde{height:213px; background:#466c6c; position:absolute; width:100%; top:0; left:0; z-index:0;}
+#divLoginRodapeVerde{height:23px; background:#466c6c; position:absolute; width:100%; bottom:0; left:0; z-index:0;}
+#loginWrap{width:393px; background:url(../images/login/fundoSombra.png) repeat-y; margin:0 auto; position:relative; height:100%; min-height:600px; z-index:1;}
+#loginLogo{width:359px; margin:0 auto; height:116px; padding-top:56px;}
+#loginLogo img{margin:0 auto; display:block; border:none;}
+#loginTitle{height:41px; line-height:41px; background:#afd34c; text-align:center; color:#466c6c; font-size:20px; text-transform:uppercase; width:359px; margin:0 auto;}
+#divLoginForm table{margin:40px auto 0 auto; width:290px;}
+#recuperarSenhaForm table{width:100%; margin-top:15px; margin-bottom:10px;}
+#divLoginForm label, #recuperarSenhaForm label{text-transform:uppercase; font-size:14px; color:#466c6c;}
+#divLoginForm input[type="text"], #divLoginForm input[type="password"], #recuperarSenhaForm input[type="text"]{width:100%; background:#fafafa; border:1px solid #dadada; border-radius:2px; box-sizing:border-box; -moz-box-shadow:none; -webkit-box-shadow:none; box-shadow:none; margin-top:5px;}
+#divLoginForm input[type="submit"]{background:#a6ce39; width:100%; border:none; color:#466c6c; font-size:17px; text-transform:uppercase; font-weight:normal; line-height:41px; height:auto; margin-top:70px;}
+#recuperarSenhaForm input[type="submit"]{margin-top:40px; background:#466c6c; color:#FFFFFF; width:100%; border:none; font-size:15px; text-transform:uppercase; font-weight:normal; line-height:30px; height:auto;}
+#recuperarSenhaForm input[type="text"]{margin-top:3px;}
+#divLoginForm label#recuperarSenha{font-size:12px; text-decoration:underline; text-transform:none; cursor:pointer;}
+#loginRodape{font-size:11px; color:#466c6c; width:100%; text-align:center; position:absolute; bottom:15px;}
+#loginRodape div{width:300px; margin:0 auto;}
+
+/* Estilos rodapé e menu */
+#sysFooter{text-align:center; background:#466c6c; color:#FFFFFF; padding:10px;}
+#divLogoHead{background:#FFFFFF; float:left; width:206px; height:71px;}
+#divLogoHead div {padding:0; width:100%; height:100%;}
+#divLogoHead a{display:block; width:100%; height:100%;}
+#divLogoHead a img{border:none; margin-top:11px; margin-left:11px;}
+#sistemaTitle{color:#FFFFFF; font-size:19px; text-transform:uppercase; display:inline-block; vertical-align:middle; margin-left:25px; margin-right:25px; height:65px; line-height:65px; white-space:nowrap;}
+#menuBar{background:#FFFFFF; min-height:71px; overflow:hidden; margin:0;}
+#menuBar div{padding:0;}
+#menuBarVerde{background:#466c6c; min-height:65px;}
+#menuBarBranco{background:#ffffff; height:3px;}
+#menuBarVerdeClaro{background:#a6ce39; height:4px;}
+.dropDMenu .ui-menuitem-text, .usrDMenu .ui-menuitem-text{float:none; overflow:hidden; display:block;}
+.homeMenu .ui-icon{background:url(../images/menu/icones/home.png) left center no-repeat; margin-right:8px;}
+.requisitarMateriaisMenu .ui-icon{background:url(../images/menu/icones/requisitarMateriais.png) left center no-repeat; margin-right:8px;}
+.visualizarRequisicoesMenu .ui-icon{background:url(../images/menu/icones/visualizarRequisicoes.png) left center no-repeat; margin-right:8px;}
+.gerenciarMateriaisMenu .ui-icon{background:url(../images/menu/icones/gerenciarMateriais.png) left center no-repeat; margin-right:8px;}
+.gerenciarPostosMenu .ui-icon{background:url(../images/menu/icones/gerenciarPostos.png) left center no-repeat; margin-right:8px;}
+.relatorioRastreabilidadeMenu .ui-icon{background:url(../images/menu/icones/relatorioRastreabilidade.png) left center no-repeat; margin-right:8px;}
+.relatorioEstoqueMenu .ui-icon{background:url(../images/menu/icones/relatorioEstoque.png) left center no-repeat; margin-right:8px;}
+.relatorioValidadeMenu .ui-icon{background:url(../images/menu/icones/relatorioValidade.png) left center no-repeat; margin-right:8px;}
+.gerenciarUsuariosMenu .ui-icon{background:url(../images/menu/icones/gerenciarUsuarios.png) left center no-repeat; margin-right:8px;}
+.ui-state-hover .dropDMenu .ui-icon{background-position:right center !important;}
+.dropDMenu.current{background-color:#67b021; color:#FFFFFF; width:100%; box-sizing:border-box;}
+.dropDMenu.current .ui-icon{background-position:right center;}
+.usrDMenu .ui-icon{margin-right:8px;}
+#menuBar .ui-menubutton{float:right; background:#466c6c !important;}
+#menuBar button{height:65px; background:#466c6c !important; border:none !important;}
+#menuBar .sistemaMenu button .ui-button-text{font-size:15px; text-transform:uppercase; color:#FFFFFF !important; font-weight:normal; padding:.3em 2.5em .3em 1.5em;}
+#menuBar .sistemaMenu button .ui-icon{background:url(../images/menu/icones/menuIcon.png) center center no-repeat !important; right:2em; left:auto;}
+#menuBar .usuarioMenu .ui-icon, #menuBar .menuNotif .ui-icon{display:none;}
+#menuBar .sistemaMenu, #menuBar .menuNotif{margin-right:2px;}
+#menuBar .sistemaMenu button{padding-right:18px;}
+#menuBar .usuarioMenu, #menuBar .menuNotif{background:#597b7b !important; width:75px;}
+#menuBar .usuarioMenu button{background:#597b7b url(../images/menu/icones/menuUser.png) center center no-repeat !important; width:100%;}
+#menuBar .menuNotif button{background:#597b7b url(../images/menu/icones/menuNotif.png) center center no-repeat !important; width:100%;}
+#menuFloat{float:right;}
+.sistemaMenuDrop{width:18em;}
+.customDrop .ui-separator{background:#e0e0e0; border:none; height:1px;}
+#menuBar .sistemaMenu button.ui-state-focus, #menuBar .usuarioMenu button.ui-state-focus, #menuBar .menuNotif button.ui-state-focus{background-color:#67b021 !important;}
+.ui-menu .usrId{overflow:hidden; background:#466c6c; width:100%; box-sizing:border-box; color:#ffffff !important;}
+.ui-menu .usrId .ui-menuitem-text{margin:3px 5px 2px 5px; display:block; float:none; overflow:hidden;}
+.notifMenuDrop{width:250px; max-height:285px; min-height:250px; background-image:url(../images/menu/notifBr.png); background-position:center center; background-repeat:no-repeat;}
+
+
+/*Estilos HOME */
+#mainWrap{padding:40px 25px 70px 25px;}
+#mainWrap h1{color:#466c6c; font-size:19px; font-weight:normal; text-transform:uppercase; display:block;}
+#containerWrap{margin-top:38px;}
+#containerWrap .container{width:202px; height:244px; background:#f4f4f4; float:left; margin-right:16px; margin-bottom:18px;}
+#containerWrap .container:hover{background:#e8f3de;}
+#containerWrap .container a{display:block; width:100%; height:100%; margin:0; padding:0; text-align:center; text-decoration:none;}
+#containerWrap .container a img{margin-top:50px; border:none;}
+#containerWrap .container a img.imgUp{margin-top:44px;}
+#containerWrap .container a label{display:block; color:#466c6c; text-transform:uppercase; font-size:14px; padding:35px 30px 0 30px; text-align:center; text-decoration:none; cursor:pointer;}
+#containerWrap .container a label.lblUp{padding-top:32px;}

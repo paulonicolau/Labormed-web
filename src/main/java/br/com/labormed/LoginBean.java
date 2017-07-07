@@ -8,9 +8,9 @@ import javax.faces.bean.RequestScoped;
 
 import org.apache.log4j.Logger;
 
-import br.com.labormed.impl.UsuarioServiceImpl;
 import br.com.labormed.model.Usuario;
 import br.com.labormed.services.UsuarioService;
+import br.com.labormed.services.impl.UsuarioServiceImpl;
 
 @ManagedBean(name = "loginBean")
 @RequestScoped

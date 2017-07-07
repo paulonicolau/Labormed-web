@@ -2,32 +2,6 @@
 <faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
-	<!-- Conversores -->
-	<converter>
-		<converter-id>conversorSenha</converter-id>
-		<converter-class>br.com.labormed.converters.ConversorSenha</converter-class>
-	</converter>
-	<converter>
-		<converter-id>conversorData</converter-id>
-		<converter-class>br.com.labormed.converters.ConversorData</converter-class>
-	</converter>
-	<converter>
-		<converter-id>conversorDataHora</converter-id>
-		<converter-class>br.com.labormed.converters.ConversorDataHora</converter-class>
-	</converter>
-<!-- 	<converter> -->
-<!-- 		<converter-id>conversorCliente</converter-id> -->
-<!-- 		<converter-class>br.com.labormed.converters.UsuarioConverter</converter-class> -->
-<!-- 	</converter> -->
-<!-- 	<converter> -->
-<!-- 		<converter-id>conversorProduto</converter-id> -->
-<!-- 		<converter-class>br.com.labormed.converters.ProdutoConverter</converter-class> -->
-<!-- 	</converter> -->
-<!-- 	<converter> -->
-<!-- 		<converter-id>conversorGrupo</converter-id> -->
-<!-- 		<converter-class>br.com.labormed.converters.GrupoConverter</converter-class> -->
-<!-- 	</converter> -->
-	
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>

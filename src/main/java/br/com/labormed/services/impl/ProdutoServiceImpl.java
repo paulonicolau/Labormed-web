@@ -1,5 +1,6 @@
-package br.com.labormed.impl;
+package br.com.labormed.services.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -35,8 +36,11 @@ public class ProdutoServiceImpl extends ServiceImpl<Produto> implements ProdutoS
 				if(produto.getCodigo() != null && !produto.getCodigo().isEmpty()){
 					lSql.append("and p.codigo = :codigo ");
 				}
-				if(produto.getDescricao() != null){
+				if(produto.getDescricao() != null && !produto.getDescricao().isEmpty()){
 					lSql.append("and p.descricao = :descricao ");
+				}
+				if(produto.getDataReg() != null){
+					lSql.append("and p.dataReg = :dataReg ");
 				}
 			}
 			
@@ -48,8 +52,11 @@ public class ProdutoServiceImpl extends ServiceImpl<Produto> implements ProdutoS
 				if(produto.getCodigo() != null && !produto.getCodigo().isEmpty()){
 					query.setParameter("codigo", produto.getCodigo());
 				}
-				if(produto.getDescricao() != null){
+				if(produto.getDescricao() != null && !produto.getDescricao().isEmpty()){
 					query.setParameter("descricao", produto.getDescricao());
+				}
+				if(produto.getDataReg() != null){
+					query.setParameter("dataReg", new Date(produto.getDataReg().getTime()));
 				}
 			}
 			return (List<Produto>) query.getResultList();

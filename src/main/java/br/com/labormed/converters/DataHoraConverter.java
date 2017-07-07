@@ -1,21 +1,23 @@
 package br.com.labormed.converters;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
+import javax.faces.convert.FacesConverter;
 
 import br.com.labormed.util.Util;
 
-public class ConversorData implements Converter {
+@FacesConverter("ConversorDataHora")
+public class DataHoraConverter implements Converter {
+	// decodificacao: CLIENTE -> SERVIDOR
 	public Object getAsObject(FacesContext contexto, UIComponent componente, String novoValor) throws ConverterException {
 
 		if (novoValor != null && novoValor.length() > 0) {
 			if (Util.dataValida(novoValor)) {
-				return Util.strToDateSQL(novoValor);
+				return Util.strToDateTimesTamp(novoValor);
 			} else {
 				return novoValor;
 			}
@@ -24,9 +26,8 @@ public class ConversorData implements Converter {
 		}
 	}
 
-	public String getAsString(FacesContext contexto, UIComponent componente,
-			Object valor) throws ConverterException {
-		Date data = new Date(((Timestamp)valor).getTime());
-		return Util.dateSQLToStr(data);
+	// codificacao: SERVIDOR -> CLIENTE
+	public String getAsString(FacesContext contexto, UIComponent componente, Object valor) throws ConverterException {
+		return Util.TimeStampToStr((Timestamp) valor);
 	}
 }

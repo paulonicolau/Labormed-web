@@ -5,8 +5,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import br.com.labormed.impl.GrupoServiceImpl;
 import br.com.labormed.model.Grupo;
+import br.com.labormed.services.impl.GrupoServiceImpl;
 
 @FacesConverter("conversorGrupo")
 public class GrupoConverter implements Converter{

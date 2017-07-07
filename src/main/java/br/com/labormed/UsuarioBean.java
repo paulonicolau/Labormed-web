@@ -1,7 +1,6 @@
 package br.com.labormed;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -9,9 +8,9 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
 
-import br.com.labormed.impl.UsuarioServiceImpl;
 import br.com.labormed.model.Usuario;
 import br.com.labormed.services.UsuarioService;
+import br.com.labormed.services.impl.UsuarioServiceImpl;
 
 @ManagedBean(name = "usuarioBean")
 @ViewScoped

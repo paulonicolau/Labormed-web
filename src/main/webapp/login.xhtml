@@ -9,51 +9,94 @@
 	template="/layout/template.xhtml">
 
 <ui:define name="body">
-<label class="migalhaPao">#{msg['webconsultin.login']}</label>
-	
-	<h:form id="loginform" >
-	<table border="2" align="center" style="margin-top: 80px;">
-		<tr>
-			<td>
-				<table border="0">	
-					<tr>
-						<td colspan="2" align="center" width="300px" height="40px" >
-							<font size="3"><b> #{msg['dados']} </b></font>
-						</td>
-					
-					</tr>
+	<div id="loginDivMain">
+		<div id="loginBGVerde"></div>
+		<div id="loginWrap">
+			<div id="loginLogo">
+				<a href="#{facesContext.externalContext.request.contextPath}" title="#{msg['tituloSistema']}"><img src="#{facesContext.externalContext.request.contextPath}/images/login/logo.jpg" alt="#{msg['rodape1']}" /></a>
+			</div>
+			<div id="loginTitle">#{msg['titulo']}</div>
+			<div id="divLoginForm">
+				<h:form id="loginform" >
+				<table border="0" align="center">
 					<tr>
 						<td>		
-							<label class="label2">#{msg['usuario']}</label> <!--  <label class="required">*</label> -->
-						</td>
-						<td>
-							<h:inputText styleClass="ui-inputfield ui-widget ui-state-default ui-corner-all ui-state-hover" value="#{loginBean.usuario.login}" required="true" />
+							<label class="label2">#{msg['usuario']}</label>
 						</td>
 					</tr>
+					<tr>	
+						<td>
+							<h:inputText styleClass="ui-inputfield ui-widget ui-state-default ui-corner-all ui-state-hover" value="#{loginBean.usuario.login}" required="true" requiredMessage="#{msg['msg.obrigatorio.usuario']}"/>
+						</td>
+					</tr>
+					<tr><td height="7"></td></tr>
 					<tr>	
 						<td>		
 							<label class="label3">#{msg['senha']}</label> <!--  <label class="required">*</label> -->
 						</td>
+					</tr>
+					<tr>	
 						<td>
-							<h:inputSecret styleClass="ui-inputfield ui-widget ui-state-default ui-corner-all ui-state-hover" id="input_senha" value="#{loginBean.usuario.senha}" required="true" />
+							<h:inputSecret styleClass="ui-inputfield ui-widget ui-state-default ui-corner-all ui-state-hover" id="input_senha" value="#{loginBean.usuario.senha}" required="true" requiredMessage="#{msg['msg.obrigatorio.senha']}" />
+						</td>
+					</tr>
+					<tr><td height="4"></td></tr>
+					<tr>	
+						<td align="right">
+							<label id="recuperarSenha" onclick="PF('recuperarSenhaDialog').show();">#{msg['recuperarSenha']}</label>
 						</td>
 					</tr>
 					<tr>	
 						<td align="center" colspan="2"  >		
-							<h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover" value="#{msg['enviar']}" action="#{loginBean.login}" style="height: 25px;"/>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="5">
-							<h:messages style="color:red"/>
+							<h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover" value="#{msg['acessar']}" action="#{loginBean.login}"/>
 						</td>
 					</tr>
 				</table>
-			</td>
-		</tr>
-	</table>
-	</h:form>
+				</h:form>
+			</div>
+			<div id="loginRodape">
+				<div>#{msg['rodape1']} #{msg['rodape2']}</div>
+			</div>	
+		</div>
+		<div id="divLoginRodapeVerde"></div>
+	</div>
+	
+	<p:dialog modal="true" closeOnEscape="true" closable="true" visible="true" resizable="false" draggable="false" appendTo="@(body)" header="Alerta:" rendered="#{!empty facesContext.messageList}">
+		<h:messages/>
+	</p:dialog>
+	
+	<p:dialog modal="true" closeOnEscape="true" closable="true" visible="false" resizable="false" draggable="false" width="350" appendTo="@(body)" header="Recuperar senha" widgetVar="recuperarSenhaDialog">
+		<h:form id="recuperarSenhaForm" >
+			<table border="0" align="center">
+				<tr>
+					<td>		
+						<label class="label2">#{msg['usuario']}</label>
+					</td>
+				</tr>
+				<tr>	
+					<td>
+						<h:inputText styleClass="ui-inputfield ui-widget ui-state-default ui-corner-all ui-state-hover" value="#{loginBean.usuario.login}" required="true" requiredMessage="#{msg['msg.obrigatorio.usuario']}"/>
+					</td>
+				</tr>
+				<tr><td height="5"></td></tr>
+				<tr>	
+					<td>		
+						<label class="label3">#{msg['email']}</label> <!--  <label class="required">*</label> -->
+					</td>
+				</tr>
+				<tr>	
+					<td>
+						<h:inputText styleClass="ui-inputfield ui-widget ui-state-default ui-corner-all ui-state-hover" id="input_email" value="#{loginBean.usuario.email}" required="true" requiredMessage="#{msg['msg.obrigatorio.email']}" />
+					</td>
+				</tr>
+				<tr>	
+					<td align="center" colspan="2"  >		
+						<h:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover" value="#{msg['enviar']}" action="#{loginBean.login}"/>
+					</td>
+				</tr>
+			</table>
+		</h:form>
+	</p:dialog>
 	
 </ui:define>
-
 </ui:composition>

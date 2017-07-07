@@ -10,10 +10,10 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.log4j.Logger;
 
-import br.com.labormed.impl.ProdutoServiceImpl;
 import br.com.labormed.model.Produto;
 import br.com.labormed.model.SubGrupo;
 import br.com.labormed.services.ProdutoService;
+import br.com.labormed.services.impl.ProdutoServiceImpl;
 
 @ManagedBean(name = "produtoBean")
 @ViewScoped

@@ -5,8 +5,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import br.com.labormed.impl.FabricanteServiceImpl;
 import br.com.labormed.model.Fabricante;
+import br.com.labormed.services.impl.FabricanteServiceImpl;
 
 @FacesConverter("conversorFabricante")
 public class FabricanteConverter implements Converter{

@@ -4,8 +4,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import br.com.labormed.impl.ProdutoServiceImpl;
 import br.com.labormed.model.Produto;
+import br.com.labormed.services.impl.ProdutoServiceImpl;
 
 public class ProdutoConverter implements Converter{
 	

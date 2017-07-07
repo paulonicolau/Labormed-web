@@ -10,16 +10,19 @@
 <ui:define name="left">
 <h:form prependId="false">
 	<p:growl id="messages" showDetail="true" />
-	<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
+	<p:ajaxStatus onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();"/>
 
 	<h:panelGrid columns="1">
 		<p:outputLabel value="FILTRAR MATERIAIS" />
 
 		<p:outputLabel value="Descrição do Produto" style="margin-top: 30px"/>
-		<p:selectOneMenu id="produtos" value="#{produtoBean.produto.descricao}" style="width: 200px;" effect="fade">
+		<p:selectOneMenu id="produtos" value="#{produtoBean.produto.descricao}" style="width: 217px;" effect="fade">
 			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
 			<f:selectItems value="#{produtoBean.produtos}" var="c" itemLabel="#{c.descricao}" itemValue="#{c.descricao}"/>
 		</p:selectOneMenu>
+
+		<p:outputLabel value="Descrição do Produto AC" style="margin-top: 30px"/>
+		<p:autoComplete id="acDescricao" value="#{produtoBean.produto.descricao}" style="width: 237px;" completeMethod="#{produtoBean.completeText}" /> 
 
 		<p:outputLabel value="Código do Produto" style="margin-top: 20px"/>
 		<p:inputText id="codProduto" value="#{produtoBean.produto.codigo}" style="width: 217px"/>
@@ -40,7 +43,7 @@
 		</p:selectOneMenu>
 		
 		<p:outputLabel value="Data de Cadastro" style="margin-top: 20px"/>
-		<p:calendar id="dataCadastro" value="#{produtoBean.produto.dataReg}" showOn="button" pattern="dd/MM/yyy" style="width: 217px"/>
+		<p:calendar id="dataCadastro" value="#{produtoBean.produto.dataReg}" showOn="button" pattern="dd/MM/yyy" style="width: 217px" converter="conversorData"/>
 
 		<p:outputLabel value="Validade" style="margin-top: 20px"/>
 		<p:calendar value="#{produtoBean.dataValidade}" showOn="button" pattern="dd/MM/yyy" style="width: 217px"/> 

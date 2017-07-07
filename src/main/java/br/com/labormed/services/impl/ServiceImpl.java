@@ -1,4 +1,4 @@
-package br.com.labormed.impl;
+package br.com.labormed.services.impl;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

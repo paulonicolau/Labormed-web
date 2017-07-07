@@ -1,4 +1,4 @@
-package br.com.labormed.impl;
+package br.com.labormed.services.impl;
 
 import br.com.labormed.model.Fabricante;
 import br.com.labormed.services.FabricanteService;

@@ -21,3 +21,8 @@ jQuery(function($){
 		yearSuffix: ''};
 	$.datepicker.setDefaults($.datepicker.regional['pt-BR']);
 });
+
+$(document).ready(function(){
+	$(".sistemaMenu").attr("title", "Menu");
+	$(".usuarioMenu").attr("title", "Menu do Usuário");
+});
