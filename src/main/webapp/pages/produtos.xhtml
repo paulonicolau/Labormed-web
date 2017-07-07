@@ -9,39 +9,36 @@
 
 <ui:define name="left">
 <h:form prependId="false">
+	<p:growl id="messages" showDetail="true" />
 	<h:panelGrid columns="1">
 		<p:outputLabel value="FILTRAR MATERIAIS" />
 
 		<p:outputLabel value="Descrição do Produto" style="margin-top: 30px"/>
-		<p:selectOneMenu id="produtos" value="#{produtoBean.produto}" style="width: 200px;" effect="fade">
+		<p:selectOneMenu id="produtos" value="#{produtoBean.produto.descricao}" style="width: 200px;" effect="fade">
 			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
-			<f:selectItems value="#{produtoBean.produtos}" var="c" itemLabel="#{c.descricao}" itemValue="#{c}"/>
+			<f:selectItems value="#{produtoBean.produtos}" var="c" itemLabel="#{c.descricao}" itemValue="#{c.descricao}"/>
 		</p:selectOneMenu>
 
 		<p:outputLabel value="Código do Produto" style="margin-top: 20px"/>
-		<p:inputText id="codProduto" style="width: 217px"/>
+		<p:inputText id="codProduto" value="#{produtoBean.produto.codigo}" style="width: 217px"/>
 
 		<p:outputLabel value="Grupo" style="margin-top: 20px"/>
 		<p:selectOneMenu id="gruposID" value="#{grupoBean.grupo}" style="width: 200px;" effect="fade" converter="conversorGrupo"> 
 <!-- 			filter="true" filterMatchMode="startsWith" var="c"> -->
 			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
 			<f:selectItems value="#{grupoBean.grupos}" var="c" itemLabel="#{c.descricao}" itemValue="#{c}"/>
-			<p:ajax update="subGruposID" listener="#{grupoBean.onChangeGrupo}" />
+			<p:ajax update="messages subGruposID" listener="#{grupoBean.onChangeGrupo}" />
 		</p:selectOneMenu>
 		
 		<p:outputLabel value="Subgrupo" style="margin-top: 20px"/>
 		<p:selectOneMenu id="subGruposID" value="#{produtoBean.subGrupo}" style="width: 200px;" effect="fade" converter="conversorSubGrupo">
 			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
 			<f:selectItems value="#{grupoBean.subGrupos}" var="c" itemLabel="#{c.descricao}" itemValue="#{c}"/>
-			<p:ajax update="produtoID" listener="#{produtoBean.onChangeSubGrupo}" />
+			<p:ajax update="messages :form:produtoID" listener="#{produtoBean.onChangeSubGrupo}" />
 		</p:selectOneMenu>
-
-		<p:outputLabel value="" />
-		<p:commandButton value="enviar" update=":produtoID" actionListener="#{produtoBean.buscarProdutos}" />
 		
-
 		<p:outputLabel value="Data de Cadastro" style="margin-top: 20px"/>
-		<p:inputText id="dataCadastro" style="width: 217px"/>
+		<p:inputText id="dataCadastro" value="#{produtoBean.produto.dataReg}" style="width: 217px"/>
 
 		<p:outputLabel value="Validade" style="margin-top: 20px"/>
 		<p:inputText id="validade" style="width: 217px"/>
@@ -50,7 +47,7 @@
 		<p:inputText id="lote" style="width: 217px"/>
 
 		<p:outputLabel value="Situação" style="margin-top: 20px"/>
-		<p:selectOneMenu id="situacao" value="#{produtoBean.produto}" style="width: 200px;" effect="fade">
+		<p:selectOneMenu id="situacao" value="#{produtoBean.produto.ativo}" style="width: 200px;" effect="fade">
 			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
 			<f:selectItem itemLabel="Ativo"  itemValue="" noSelectionOption="false"/>
 			<f:selectItem itemLabel="Inativo"  itemValue="" noSelectionOption="false"/>
@@ -60,19 +57,19 @@
 		<p:inputText id="registroAnvisa" value="#{produtoBean.produto.registroAnvisa}" style="width: 217px"/>
 
 		<p:outputLabel value="Fabricante" style="margin-top: 20px"/>
-		<p:inputText id="fabricante" style="width: 217px"/>
+		<p:inputText id="fabricante" value="#{produtoBean.produto.fabricante}" style="width: 217px"/>
 	</h:panelGrid>
 </h:form>
 </ui:define>
 
 <ui:define name="body">
-<h:form prependId="false">
-	<div align="center">
-	<p:dataGrid var="produto" id="produtoID" value="#{produtoBean.produtos}" paginator="true" rows="3" columns="1" style="width: 600px; text-align:center">
-			<p:panelGrid style="margin-top: 20px">
+<h:form id="form">
+<div align="center">
+	<p:dataGrid var="produto" id="produtoID" value="#{produtoBean.produtos}" paginator="true" rows="3" columns="1" style="width: auto; text-align:center">
+			<p:panelGrid style="margin-top: 20px; text-align: center">
 			    <f:facet name="header">
 			        <p:row>
-			            <p:column colspan="4">${produto.descricao}</p:column>
+			            <p:column colspan="4" style="border:#CCC;">${produto.descricao}</p:column>
 			        </p:row>
 			    </f:facet>
 
@@ -124,6 +121,6 @@
 			</p:panelGrid>
 	</p:dataGrid>
 	</div>
-	</h:form>
+</h:form>
 </ui:define>
 </ui:composition>
