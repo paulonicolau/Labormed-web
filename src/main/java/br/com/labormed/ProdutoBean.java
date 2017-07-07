@@ -1,6 +1,7 @@
 package br.com.labormed;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class ProdutoBean extends AplicacaoBean implements Serializable {
 			setProdutos(lista);
 		} catch (Exception e) {
 			Logger.getLogger(getClass()).error(e.getMessage());
+			setProdutos(new ArrayList<Produto>());
 		}
 	}
 	public Produto getProduto(Object pk) {
@@ -45,6 +47,7 @@ public class ProdutoBean extends AplicacaoBean implements Serializable {
 			produto = produtoService.findById(pk);
 		} catch (Exception e) {
 			Logger.getLogger(getClass()).error(e.getMessage());
+			setProdutos(new ArrayList<Produto>());
 		}		
 		
 		return produto;
@@ -69,13 +72,6 @@ public class ProdutoBean extends AplicacaoBean implements Serializable {
 
 
 	public List<Produto> getProdutos() {
-		try {
-			ProdutoService produtoService = new ProdutoServiceImpl();
-			produtos = produtoService.findAll();
-		} catch (Exception e) {
-			Logger.getLogger(getClass()).error(e.getMessage());
-		}		
-		
 		return produtos;
 	}
 
