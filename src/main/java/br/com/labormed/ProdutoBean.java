@@ -26,11 +26,26 @@ public class ProdutoBean extends AplicacaoBean implements Serializable {
 	private SubGrupo subGrupo;
 	private Date dataInicial;
 	private Date dataFinal;
+	private String lote;
+	private String dataValidade;
 	
 	public ProdutoBean(){
 		setProduto(new Produto());
 	}
-
+	
+	public List<String> completeText(String query) {
+        List<String> results = new ArrayList<String>();
+        for(int i = 0; i < 10; i++) {
+            results.add(query + i);
+        }
+         
+        return results;
+    }
+	
+	public void cadastrarProdutos(){
+		
+	}
+	
 	public void buscarProdutos(){
 		try {
 			ProdutoService produtoService = new ProdutoServiceImpl();
@@ -101,5 +116,21 @@ public class ProdutoBean extends AplicacaoBean implements Serializable {
 
 	public void setDataFinal(Date dataFinal) {
 		this.dataFinal = dataFinal;
+	}
+
+	public String getLote() {
+		return lote;
+	}
+
+	public void setLote(String lote) {
+		this.lote = lote;
+	}
+
+	public String getDataValidade() {
+		return dataValidade;
+	}
+
+	public void setDataValidade(String dataValidade) {
+		this.dataValidade = dataValidade;
 	}
 }

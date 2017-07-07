@@ -1,0 +1,53 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:c="http://java.sun.com/jsp/jstl/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/layout/template.xhtml">
+
+<ui:define name="body">
+<h:form prependId="false">
+	<p:growl id="messages" showDetail="true" />
+	<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
+
+	<h:panelGrid columns="2">
+		<p:outputLabel value="Descrição do Produto" style="margin-top: 30px"/>
+		<p:inputText id="descricao" value="#{produtoBean.produto.descricao}" style="width: 217px" required="true"/>
+		<p:autoComplete id="acDescricao" value="#{produtoBean.produto.descricao}" completeMethod="#{produtoBean.completeText}" /> 
+
+		<p:outputLabel value="Código do Produto" style="margin-top: 20px"/>
+		<p:inputText id="codProduto" value="#{produtoBean.produto.codigo}" style="width: 217px"/>
+
+		<p:outputLabel value="Grupo" style="margin-top: 20px"/>
+		<p:selectOneMenu id="gruposID" value="#{grupoBean.grupo}" style="width: 200px;" effect="fade" converter="conversorGrupo"> 
+			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
+			<f:selectItems value="#{grupoBean.grupos}" var="c" itemLabel="#{c.descricao}" itemValue="#{c}"/>
+			<p:ajax update="messages subGruposID" listener="#{grupoBean.onChangeGrupo}" />
+		</p:selectOneMenu>
+		
+		<p:outputLabel value="Subgrupo" style="margin-top: 20px"/>
+		<p:selectOneMenu id="subGruposID" value="#{produtoBean.subGrupo}" style="width: 200px;" effect="fade" converter="conversorSubGrupo" required="true">
+			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
+			<f:selectItems value="#{grupoBean.subGrupos}" var="c" itemLabel="#{c.descricao}" itemValue="#{c}"/>
+			<p:ajax update="messages :form:produtoID" listener="#{produtoBean.onChangeSubGrupo}" />
+		</p:selectOneMenu>
+		
+		<p:outputLabel value="Situação" style="margin-top: 20px"/>
+		<p:selectOneMenu id="situacao" value="#{produtoBean.produto.ativo}" style="width: 200px;" effect="fade">
+			<f:selectItem itemLabel="Ativo"  itemValue="true" noSelectionOption="false"/>
+			<f:selectItem itemLabel="Inativo"  itemValue="false" noSelectionOption="false"/>
+		</p:selectOneMenu>
+
+		<p:outputLabel value="Registro na Anvisa" style="margin-top: 20px"/>
+		<p:inputText id="registroAnvisa" value="#{produtoBean.produto.registroAnvisa}" style="width: 217px" required="true"/>
+
+		<p:outputLabel value="Fabricante" style="margin-top: 20px"/>
+		<p:inputText id="fabricante" value="#{produtoBean.produto.fabricante}" style="width: 217px" converter="conversorFabricante" required="true"/>
+		
+		<p:commandButton value="Enviar" actionListener="#{produtoBean.cadastrarProdutos}" update="messages :form:produtoID"/>
+	</h:panelGrid>
+</h:form>
+</ui:define>
+</ui:composition>

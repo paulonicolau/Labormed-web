@@ -10,6 +10,8 @@
 <ui:define name="left">
 <h:form prependId="false">
 	<p:growl id="messages" showDetail="true" />
+	<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
+
 	<h:panelGrid columns="1">
 		<p:outputLabel value="FILTRAR MATERIAIS" />
 
@@ -38,26 +40,28 @@
 		</p:selectOneMenu>
 		
 		<p:outputLabel value="Data de Cadastro" style="margin-top: 20px"/>
-		<p:inputText id="dataCadastro" value="#{produtoBean.produto.dataReg}" style="width: 217px"/>
+		<p:calendar id="dataCadastro" value="#{produtoBean.produto.dataReg}" showOn="button" pattern="dd/MM/yyy" style="width: 217px"/>
 
 		<p:outputLabel value="Validade" style="margin-top: 20px"/>
-		<p:inputText id="validade" style="width: 217px"/>
+		<p:calendar value="#{produtoBean.dataValidade}" showOn="button" pattern="dd/MM/yyy" style="width: 217px"/> 
 
 		<p:outputLabel value="Lote" style="margin-top: 20px"/>
-		<p:inputText id="lote" style="width: 217px"/>
+		<p:inputText id="lote" value="#{produtoBean.lote}" style="width: 217px"/>
 
 		<p:outputLabel value="Situação" style="margin-top: 20px"/>
 		<p:selectOneMenu id="situacao" value="#{produtoBean.produto.ativo}" style="width: 200px;" effect="fade">
 			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
-			<f:selectItem itemLabel="Ativo"  itemValue="" noSelectionOption="false"/>
-			<f:selectItem itemLabel="Inativo"  itemValue="" noSelectionOption="false"/>
+			<f:selectItem itemLabel="Ativo"  itemValue="true" noSelectionOption="false"/>
+			<f:selectItem itemLabel="Inativo"  itemValue="false" noSelectionOption="false"/>
 		</p:selectOneMenu>
 
 		<p:outputLabel value="Registro na Anvisa" style="margin-top: 20px"/>
 		<p:inputText id="registroAnvisa" value="#{produtoBean.produto.registroAnvisa}" style="width: 217px"/>
 
 		<p:outputLabel value="Fabricante" style="margin-top: 20px"/>
-		<p:inputText id="fabricante" value="#{produtoBean.produto.fabricante}" style="width: 217px"/>
+		<p:inputText id="fabricante" value="#{produtoBean.produto.fabricante}" style="width: 217px" converter="conversorFabricante" />
+		
+		<p:commandButton value="Enviar" actionListener="#{produtoBean.buscarProdutos}" update="messages :form:produtoID"/>
 	</h:panelGrid>
 </h:form>
 </ui:define>

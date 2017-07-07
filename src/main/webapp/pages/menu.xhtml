@@ -11,7 +11,8 @@
 		<ul>
 			<li id="inicio"><h:commandLink action="/pages/index.xhtml" value="#{msg['inicio']}"/></li>
 			<li id="cliente"><h:commandLink action="/pages/usuarios.xhtml" value="#{msg['usuario']}"/></li>
-			<li id="producao"><h:commandLink action="/pages/produtos.xhtml" value="#{msg['produto']}"/></li>
+			<li id="produto"><h:commandLink action="/pages/produtos.xhtml" value="#{msg['produto']}"/></li>
+			<li id="cadProduto"><h:commandLink action="/pages/cadastroProdutos.xhtml" value="#{msg['cadastrar produto']}"/></li>
 			<li style="float: right;"><h:commandLink action="#{loginBean.logout}" value="#{msg['menu.usuario.logado']} #{loginBean.usuarioLogado.login} | Sair" /></li>
 		</ul>
 	</h:form>
