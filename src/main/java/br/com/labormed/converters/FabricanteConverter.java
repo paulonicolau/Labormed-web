@@ -3,10 +3,9 @@ package br.com.labormed.converters;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.naming.InitialContext;
 
+import br.com.labormed.impl.FabricanteServiceImpl;
 import br.com.labormed.model.Fabricante;
-import br.com.labormed.services.FabricanteService;
 
 public class FabricanteConverter implements Converter{
 	
@@ -15,7 +14,7 @@ public class FabricanteConverter implements Converter{
 			return null;
 		}
 		try { 
-			Fabricante c = ((FabricanteService) (new InitialContext().lookup("fabricanteService"))).findById(Integer.valueOf(value));
+			Fabricante c = new FabricanteServiceImpl().findById(Integer.valueOf(value));
 			return c;
 		} catch (Exception e) { return null; }
 	}
