@@ -15,14 +15,15 @@
 	<h:panelGrid columns="1">
 		<p:outputLabel value="FILTRAR MATERIAIS" />
 
-		<p:outputLabel value="Descrição do Produto" style="margin-top: 30px"/>
-		<p:selectOneMenu id="produtos" value="#{produtoBean.produto.descricao}" style="width: 217px;" effect="fade">
-			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/>
-			<f:selectItems value="#{produtoBean.produtos}" var="c" itemLabel="#{c.descricao}" itemValue="#{c.descricao}"/>
-		</p:selectOneMenu>
+<!-- 		<p:outputLabel value="Descrição do Produto" style="margin-top: 30px"/> -->
+<!-- 		<p:selectOneMenu id="produtos" value="#{produtoBean.produto.descricao}" style="width: 217px;" effect="fade"> -->
+<!-- 			<f:selectItem itemLabel="Todos"  itemValue="" noSelectionOption="false"/> -->
+<!-- 			<f:selectItems value="#{produtoBean.produtos}" var="c" itemLabel="#{c.descricao}" itemValue="#{c.descricao}"/> -->
+<!-- 		</p:selectOneMenu> -->
 
 		<p:outputLabel value="Descrição do Produto AC" style="margin-top: 30px"/>
-		<p:autoComplete id="acDescricao" value="#{produtoBean.produto.descricao}" style="width: 237px;" completeMethod="#{produtoBean.completeText}" /> 
+		<p:autoComplete id="acDescricao" value="#{produtoBean.produto}" converter="conversorProduto" 
+			style="width: 237px;" completeMethod="#{produtoBean.completeText}" var="p" itemLabel="#{p.descricao}" itemValue="#{p}"/> 
 
 		<p:outputLabel value="Código do Produto" style="margin-top: 20px"/>
 		<p:inputText id="codProduto" value="#{produtoBean.produto.codigo}" style="width: 217px"/>
@@ -73,59 +74,59 @@
 <h:form id="form">
 <div align="center">
 	<p:dataGrid var="produto" id="produtoID" value="#{produtoBean.produtos}" paginator="true" rows="3" columns="1" style="width: auto; text-align:center">
-			<p:panelGrid style="margin-top: 20px; text-align: center">
-			    <f:facet name="header">
-			        <p:row>
-			            <p:column colspan="4" style="border:#CCC;">${produto.descricao}</p:column>
-			        </p:row>
-			    </f:facet>
-
+		<p:panelGrid style="margin-top: 20px; margin-botton: 20px; text-align: center; height:100%">
+		    <f:facet name="header">
 		        <p:row>
-		            <p:column styleClass="ui-widget-header">Código do Produto</p:column>
-		            <p:column styleClass="ui-widget-header">Grupo</p:column>
-		            <p:column styleClass="ui-widget-header">Subgrupo</p:column>
-		            <p:column styleClass="ui-widget-header">Data de Cadastro</p:column>
+		            <p:column colspan="4" style="border:#CCC;">${produto.descricao}</p:column>
 		        </p:row>
+		    </f:facet>
 
-			    <p:row>
-			    	<p:column>${produto.codigo}</p:column>
-			        <p:column>${produto.subGrupo.grupo.descricao}</p:column>
-			        <p:column>${produto.subGrupo.descricao}</p:column>
-			        <p:column>
-						<h:outputText value="#{produto.dataReg}">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</h:outputText>
-					</p:column>
-			    </p:row>
+	        <p:row>
+	            <p:column styleClass="ui-widget-header">Código do Produto</p:column>
+	            <p:column styleClass="ui-widget-header">Grupo</p:column>
+	            <p:column styleClass="ui-widget-header">Subgrupo</p:column>
+	            <p:column styleClass="ui-widget-header">Data de Cadastro</p:column>
+	        </p:row>
 
-		        <p:row>
-		            <p:column styleClass="ui-widget-header">Validade</p:column>
-		            <p:column styleClass="ui-widget-header">Lote</p:column>
-		            <p:column styleClass="ui-widget-header">Situação</p:column>
-		            <p:column styleClass="ui-widget-header">Unidade de Medida</p:column>
-		        </p:row>
+		    <p:row>
+		    	<p:column>${produto.codigo}</p:column>
+		        <p:column>${produto.subGrupo.grupo.descricao}</p:column>
+		        <p:column>${produto.subGrupo.descricao}</p:column>
+		        <p:column>
+					<h:outputText value="#{produto.dataReg}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+		    </p:row>
 
-			    <p:row>
-			    	<p:column>12/12/1200</p:column>
-			        <p:column>123456</p:column>
-			        <p:column>${produto.ativo}</p:column>
-			        <p:column>Unidade</p:column>
-			    </p:row>
+	        <p:row>
+	            <p:column styleClass="ui-widget-header">Validade</p:column>
+	            <p:column styleClass="ui-widget-header">Lote</p:column>
+	            <p:column styleClass="ui-widget-header">Situação</p:column>
+	            <p:column styleClass="ui-widget-header">Unidade de Medida</p:column>
+	        </p:row>
 
-		        <p:row>
-		            <p:column styleClass="ui-widget-header">Quantidade disponível</p:column>
-		            <p:column styleClass="ui-widget-header">Código de Barras</p:column>
-		            <p:column styleClass="ui-widget-header">Registro na Anvisa</p:column>
-		            <p:column styleClass="ui-widget-header">Fabricante</p:column>
-		        </p:row>
+		    <p:row>
+		    	<p:column>12/12/1200</p:column>
+		        <p:column>123456</p:column>
+		        <p:column>${produto.ativo}</p:column>
+		        <p:column>Unidade</p:column>
+		    </p:row>
 
-			    <p:row>
-			    	<p:column>500</p:column>
-			        <p:column>${produto.codigoBarras}</p:column>
-			        <p:column>${produto.registroAnvisa}</p:column>
-			        <p:column>${produto.fabricante.razaoSocial}</p:column>
-			    </p:row>
-			</p:panelGrid>
+	        <p:row>
+	            <p:column styleClass="ui-widget-header">Quantidade disponível</p:column>
+	            <p:column styleClass="ui-widget-header">Código de Barras</p:column>
+	            <p:column styleClass="ui-widget-header">Registro na Anvisa</p:column>
+	            <p:column styleClass="ui-widget-header">Fabricante</p:column>
+	        </p:row>
+
+		    <p:row>
+		    	<p:column>500</p:column>
+		        <p:column>${produto.codigoBarras}</p:column>
+		        <p:column>${produto.registroAnvisa}</p:column>
+		        <p:column>${produto.fabricante.razaoSocial}</p:column>
+		    </p:row>
+		</p:panelGrid>
 	</p:dataGrid>
 	</div>
 </h:form>

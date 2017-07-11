@@ -16,7 +16,7 @@ public class FabricanteConverter implements Converter{
 			return null;
 		}
 		try { 
-			Fabricante c = new FabricanteServiceImpl().findById(Integer.valueOf(value));
+			Fabricante c = new FabricanteServiceImpl().findById(Long.valueOf(value));
 			return c;
 		} catch (Exception e) { return null; }
 	}
@@ -29,5 +29,4 @@ public class FabricanteConverter implements Converter{
 		}
 		return String.valueOf(fabricante.getId());
 	}
-
 }

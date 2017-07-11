@@ -30,7 +30,7 @@ public class ProdutoServiceImpl extends ServiceImpl<Produto> implements ProdutoS
 		try{
 			StringBuffer lSql = new StringBuffer("select p from Produto p where (1=1) ");
 			if(subGrupo != null){
-				lSql.append("and p.subGrupo.id = :idSubGrupo");
+				lSql.append("and p.subGrupo.id = :idSubGrupo ");
 			}
 			if(produto != null){
 				if(produto.getCodigo() != null && !produto.getCodigo().isEmpty()){
@@ -41,6 +41,9 @@ public class ProdutoServiceImpl extends ServiceImpl<Produto> implements ProdutoS
 				}
 				if(produto.getDataReg() != null){
 					lSql.append("and p.dataReg = :dataReg ");
+				}
+				if(produto.getId() != null && produto.getId() > 0){
+					lSql.append("and p.id = :idProduto ");
 				}
 			}
 			
@@ -58,7 +61,26 @@ public class ProdutoServiceImpl extends ServiceImpl<Produto> implements ProdutoS
 				if(produto.getDataReg() != null){
 					query.setParameter("dataReg", new Date(produto.getDataReg().getTime()));
 				}
+				if(produto.getId() != null && produto.getId() > 0){
+					query.setParameter("idProduto", produto.getId());
+				}
 			}
+			return (List<Produto>) query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Produto> findByDescricao(String queryDescricao) {
+		try{
+			StringBuffer lSql = new StringBuffer("select p from Produto p where (1=1) ");
+			lSql.append("and p.descricao like :descricao ");
+			
+			Query query = entityManager.createQuery(lSql.toString());
+			query.setParameter("descricao", queryDescricao + "%");
+
 			return (List<Produto>) query.getResultList();
 		} catch (NoResultException e) {
 			return null;

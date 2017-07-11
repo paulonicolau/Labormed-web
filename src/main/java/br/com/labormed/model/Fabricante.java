@@ -27,7 +27,7 @@ public class Fabricante implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID")
-	private long id;
+	private Long id;
 
 	@Column(name="CIDADE")
 	private String cidade;
@@ -63,11 +63,11 @@ public class Fabricante implements Serializable {
 	public Fabricante() {
 	}
 
-	public long getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

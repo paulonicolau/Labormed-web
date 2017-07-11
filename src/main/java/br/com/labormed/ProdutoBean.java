@@ -22,6 +22,7 @@ public class ProdutoBean extends AplicacaoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private List<Produto> produtos;
+	private List<Produto> listaProduto;
 	private Produto produto;
 	private SubGrupo subGrupo;
 	private Date dataInicial;
@@ -33,18 +34,28 @@ public class ProdutoBean extends AplicacaoBean implements Serializable {
 		setProduto(new Produto());
 	}
 	
-	public List<String> completeText(String query) {
-        List<String> results = new ArrayList<String>();
-        for(int i = 0; i < 10; i++) {
-            results.add(query + i);
-        }
-         
+	public List<Produto> completeText(String query) {
+        List<Produto> results = new ArrayList<Produto>();
+		try {
+			ProdutoService produtoService = new ProdutoServiceImpl();
+			results = produtoService.findByDescricao(query);
+		} catch (Exception e) {
+			Logger.getLogger(getClass()).error(e.getMessage());
+		}
+
         return results;
     }
 	
 	public void cadastrarProdutos(){
-		
-	}
+		try {
+			ProdutoService produtoService = new ProdutoServiceImpl();
+			produto.setUsuario(getUsuarioLogado());
+			produto.setDataReg(new java.sql.Date(new Date().getTime()));
+			produtoService.save(produto);
+		} catch (Exception e) {
+			Logger.getLogger(getClass()).error(e.getMessage());
+		}
+    }
 	
 	public void buscarProdutos(){
 		try {
@@ -68,6 +79,15 @@ public class ProdutoBean extends AplicacaoBean implements Serializable {
 		return produto;
 	}
 
+	public void onChangeProduto(){
+		try {
+			ProdutoService produtoService = new ProdutoServiceImpl();
+			Produto lista = produtoService.findById(produto.getId());
+			setProduto(lista);
+		} catch (Exception e) {
+			Logger.getLogger(getClass()).error(e.getMessage());
+		}
+	} 
 	public void onChangeSubGrupo(){
 		try {
 			ProdutoService produtoService = new ProdutoServiceImpl();
@@ -132,5 +152,14 @@ public class ProdutoBean extends AplicacaoBean implements Serializable {
 
 	public void setDataValidade(String dataValidade) {
 		this.dataValidade = dataValidade;
+	}
+
+	public List<Produto> getListaProduto() {
+		listaProduto = new ProdutoServiceImpl().findAll();
+		return listaProduto;
+	}
+
+	public void setListaProduto(List<Produto> listaProduto) {
+		this.listaProduto = listaProduto;
 	}
 }

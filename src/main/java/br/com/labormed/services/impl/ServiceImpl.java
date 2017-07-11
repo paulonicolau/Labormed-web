@@ -17,10 +17,28 @@ public abstract class ServiceImpl<T> implements Service<T> {
 		entityManager = EMF.createEntityManager();
 	}
 	
-	public void salvar(Object object) {
-		entityManager.persist(object);
+	public void update(Object object) throws Exception {
+		try	{
+			entityManager.getTransaction().begin();
+			entityManager.merge(object);
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			throw e;
+		}
 	}
-
+	
+	public void save(Object object) throws Exception {
+		try	{
+			entityManager.getTransaction().begin();
+			entityManager.persist(object);
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			throw e;
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<T> findAll(){
 		String tb = getEntityClass().getName();
@@ -48,5 +66,4 @@ public abstract class ServiceImpl<T> implements Service<T> {
 			throw new IllegalArgumentException("Could not guess entity class by reflection");
 		}
 	}
-
 }

@@ -23,17 +23,17 @@
 				<p:menuButton value="Menu" styleClass="sistemaMenu" menuStyleClass="sistemaMenuDrop customDrop">
 					<p:menuitem value="#{msg['inicio']}" icon="ui-icon-home" styleClass="dropDMenu homeMenu #{view.viewId eq '/pages/index.xhtml' ? 'current' : ''}" action="/pages/index.xhtml" ajax="false" />
 					<p:separator/>
-					<p:menuitem value="#{msg['requisitarMateriais']}" icon="ui-icon-home" styleClass="dropDMenu requisitarMateriaisMenu" ajax="false" />
+					<p:menuitem value="#{msg['requisitarMateriais']}" icon="ui-icon-home" styleClass="dropDMenu requisitarMateriaisMenu" action="/pages/requisitarMateriais.xhtml" ajax="false" />
 					<p:separator/>
 					<p:menuitem value="#{msg['visualizarRequisicoes']}" icon="ui-icon-home" styleClass="dropDMenu visualizarRequisicoesMenu" ajax="false" />
 					<p:separator/>
-					<p:menuitem value="#{msg['gerenciarMateriais']}" icon="ui-icon-home" styleClass="dropDMenu gerenciarMateriaisMenu #{view.viewId eq '/pages/cadastroProdutos.xhtml' ? 'current' : ''}" action="/pages/requisitarProdutos.xhtml" ajax="false" />
+					<p:menuitem value="#{msg['gerenciarMateriais']}" icon="ui-icon-home" styleClass="dropDMenu gerenciarMateriaisMenu #{view.viewId eq '/pages/cadastroProdutos.xhtml' ? 'current' : ''}" action="/pages/cadastroProdutos.xhtml" ajax="false" />
 					<p:separator/>
 					<p:menuitem value="#{msg['gerenciarPostos']}" icon="ui-icon-home" styleClass="dropDMenu gerenciarPostosMenu" ajax="false" />
 					<p:separator/>
 					<p:menuitem value="#{msg['relatorioRastreabilidade']}" icon="ui-icon-home" styleClass="dropDMenu relatorioRastreabilidadeMenu" ajax="false" />
 					<p:separator/>
-					<p:menuitem value="#{msg['relatorioEstoque']}" icon="ui-icon-home" styleClass="dropDMenu relatorioEstoqueMenu" ajax="false" />
+					<p:menuitem value="#{msg['relatorioEstoque']}" icon="ui-icon-home" styleClass="dropDMenu relatorioEstoqueMenu" action="/pages/produtos.xhtml" ajax="false" />
 					<p:separator/>
 					<p:menuitem value="#{msg['relatorioValidade']}" icon="ui-icon-home" styleClass="dropDMenu relatorioValidadeMenu" ajax="false" />
 					<p:separator/>

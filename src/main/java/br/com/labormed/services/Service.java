@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Service<T> {
 	
-	public void salvar(Object obj);
+	public void save(Object obj) throws Exception;
 	
 	public List<T> findAll();
 

@@ -10,5 +10,7 @@ public interface ProdutoService extends Service<Produto>{
 	List<Produto> findByCliente(Integer id);
 
 	List<Produto> findByFilters(SubGrupo subGrupo, Produto produto);
+
+	List<Produto> findByDescricao(String query);
 	
 }

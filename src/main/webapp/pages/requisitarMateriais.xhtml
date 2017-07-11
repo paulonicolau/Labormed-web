@@ -1,0 +1,47 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:c="http://java.sun.com/jsp/jstl/core"
+		xmlns:p="http://primefaces.org/ui"
+		template="/layout/template.xhtml">
+
+<ui:define name="body">
+<h:form prependId="false">
+	<p:growl id="messages" showDetail="true" />
+	<p:ajaxStatus onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();"/>
+
+	<p:panel id="gridcadastro">
+		<p:outputLabel value="Buscar Material" style="margin-top: 30px"/><br/>
+		<p:selectOneMenu id="produtos" value="#{produtoBean.produto}" style="width: 217px;" effect="fade" converter="conversorProduto">
+			<f:selectItem itemLabel="Selecione"  itemValue="" noSelectionOption="false"/>
+			<f:selectItems value="#{produtoBean.listaProduto}" var="c" itemLabel="#{c.descricao}" itemValue="#{c}"/>
+			<p:ajax update="messages :formTableProdutos:tableProduto" listener="#{produtoBean.onChangeProduto}" />
+		</p:selectOneMenu>
+	</p:panel>
+</h:form>
+<h:form id="formTableProdutos">
+	<p:panelGrid id="tableProduto" columns="5">
+	    <f:facet name="header">
+	        <h:outputText value="#{produtoBean.produto.descricao}" />
+	    </f:facet>	 
+	    <p:column headerText="Código">
+	        <h:outputText value="#{produtoBean.produto.codigo}" />
+	    </p:column>
+	    <p:column headerText="Lote">
+	        <h:outputText value="123" />
+	    </p:column>
+	    <p:column headerText="Unidade de Medida">
+	        <h:outputText value="caixa" />
+	    </p:column>
+	    <p:column headerText="Quantidade disponível">
+	        <h:outputText value="20 caixas" />
+	    </p:column>
+	    <p:column headerText="Selecionar Quantidade">
+	        <p:spinner value="0" />
+	    </p:column>
+	</p:panelGrid>
+</h:form>
+</ui:define>
+</ui:composition>
